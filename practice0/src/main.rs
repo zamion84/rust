@@ -1,4 +1,5 @@
 use std::io;
+use std::convert::TryInto;
 //use std::string;
 //aim for this practice is to intake some text and output the length with error handling
 fn main() {
@@ -9,10 +10,9 @@ fn main() {
         .read_line(&mut varstr)
         .expect("Failed to read line");
 
-    let varstr: String =! varstr
-        .trim()
-        .parse()
-        .expect("Index entered was not a number");
+    // let varstr: String =! varstr
+    //     .trim()
+    //     .expect("Index entered was not a number");
     
         let output = first(varstr);
     
@@ -21,7 +21,7 @@ fn main() {
 }
 fn first(x: String) -> i32 {
     let a = 32;
-    (x.len() + a)
+    (x.chars().count() + a).try_into().unwrap()
 }
 
 
